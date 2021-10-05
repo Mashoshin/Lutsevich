@@ -1,18 +1,27 @@
+<?php
+/**
+ * @var string $answer
+ */
+?>
 <html>
 <head>
-    <title>Login</title>
+    <title>SANEK</title>
+    <link rel="stylesheet" type="text/css" href="/sources/style.css">
 </head>
 <body>
-<div style="text-align: center">
+<div>
     <h1>Поиграй с Саньком</h1>
-    <h1 style="color: red"><?php echo $answer; ?></h1>
-    <img src="/sources/luts.jpg" alt="">
+    <div class="main">
+        <img class="sanek" src="/sources/luts.jpg" alt="">
+        <img class="talk" src="/sources/talk.png" alt="">
+        <h1 class="say"><?php echo $answer; ?></h1>
+    </div>
     <br><br>
     <div style="padding: 10px">
         <button type="button" onclick="window.location.href = '/finger';">Пальчик в попку</button>
     </div>
     <div>
-        <button type="button" onclick="window.location.href = '/xui';">Приписюнить</button>
+        <button type="button" onclick="window.location.href = '/hui';">Приписюнить</button>
     </div>
 </div>
 </body>

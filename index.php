@@ -2,7 +2,7 @@
 
 use src\Finger;
 use src\Lutsevich;
-use src\Xui;
+use src\Hui;
 
 require 'vendor/autoload.php';
 
@@ -11,7 +11,7 @@ $uri = $params['path'];
 $uriParts = explode('/', $uri);
 $action = $uriParts[1];
 if (empty($action)) {
-    echo render('main');
+    echo render('privetik');
 } else {
     echo $action();
 }
@@ -22,9 +22,9 @@ function finger() {
     return render($sanya->putInAss($finger));
 }
 
-function xui() {
+function hui() {
     $sanya = new Lutsevich();
-    $xui = new Xui();
+    $xui = new Hui();
     return render($sanya->putInAss($xui));
 }
 
