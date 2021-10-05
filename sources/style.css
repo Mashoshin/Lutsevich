@@ -1,0 +1,19 @@
+body {
+    cursor: url('/sources/cursor.png'), auto;
+    text-align: center;
+}
+.main {
+    position: relative;
+}
+.talk {
+    position: absolute;
+    top: 0;
+    right: 35%;
+    max-height: 150px;
+}
+.say {
+    color: red;
+    position: absolute;
+    top: 3%;
+    right: 37%;
+}

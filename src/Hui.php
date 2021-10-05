@@ -2,7 +2,7 @@
 
 namespace src;
 
-class Xui implements BodyPart
+class Hui implements BodyPart
 {
     public function getSize(): int
     {
