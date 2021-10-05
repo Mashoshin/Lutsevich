@@ -1,6 +1,9 @@
 body {
     cursor: url('/sources/pic/cursor.png'), auto;
     text-align: center;
+    background-image: url("/sources/pic/inkerman.jpg");
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
 }
 .main {
     position: relative;
