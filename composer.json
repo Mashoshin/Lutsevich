@@ -1,0 +1,16 @@
+{
+    "name": "evgeniy/lutsevich",
+    "description": "You may play with Sanya",
+    "authors": [
+        {
+            "name": "evgeniy.mashoshin",
+            "email": "evgeniy.mashoshin@simpleone.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/"
+        }
+    },
+    "require": {}
+}
