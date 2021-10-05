@@ -7,9 +7,9 @@ class Lutsevich implements FistingLover, TupaGay
     public function putInAss(BodyPart $bodyPart): string
     {
         if ($bodyPart->getSize() > 18) {
-            return  'ohh yeeee';
+            return  'Ohh yeeee';
         } else {
-            return 'so small';
+            return 'So small';
         }
     }
 

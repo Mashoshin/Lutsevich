@@ -9,42 +9,27 @@ require 'vendor/autoload.php';
 $params = parse_url($_SERVER['REQUEST_URI']);
 $uri = $params['path'];
 $uriParts = explode('/', $uri);
-$action = $uriParts[1];
+$action = $uriParts[2];
 if (empty($action)) {
-    echo render('privetik');
+    echo json_encode(['data' => 'gde action ska?']);
 } else {
-    echo $action();
+    echo json_encode(['data' => $action()]);
 }
 
 function finger() {
     $sanya = new Lutsevich();
     $finger = new Finger();
-    return render($sanya->putInAss($finger));
+    return $sanya->putInAss($finger);
 }
 
 function hui() {
     $sanya = new Lutsevich();
     $xui = new Hui();
-    return render($sanya->putInAss($xui));
+    return $sanya->putInAss($xui);
 }
 
-function render($answer)
-{
-    ob_start();
-    ob_implicit_flush(false);
-
-    $viewFile = getViewFile('main');
-    require $viewFile;
-
-    return ob_get_clean();
+function gay() {
+    $sanya = new Lutsevich();
+    return $sanya->sayMyName();
 }
 
-function getViewFile(string $view)
-{
-    $file = 'view' . '/' . "$view.php";
-    if (!is_file($file)) {
-        throw new Exception('View file does not exist.');
-    }
-
-    return $file;
-}
