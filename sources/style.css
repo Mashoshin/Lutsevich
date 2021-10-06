@@ -14,6 +14,20 @@ body {
     right: 35%;
     max-height: 150px;
 }
+.fofan {
+    position: absolute;
+    height: 100px;
+    top: 24%;
+    right: 46.5%;
+    display: none;
+}
+.hand {
+    position: absolute;
+    height: 100px;
+    top: 24%;
+    right: 0;
+    display: none;
+}
 .say {
     color: red;
     position: absolute;
