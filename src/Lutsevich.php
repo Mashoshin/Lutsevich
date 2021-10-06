@@ -13,8 +13,8 @@ class Lutsevich implements FistingLover, TupaGay
         }
     }
 
-    public function sayMyName()
+    public function sayMyName(): string
     {
-        return 'I am tupa gAy';
+        return 'I am gAy';
     }
 }

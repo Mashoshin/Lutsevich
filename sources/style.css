@@ -34,6 +34,7 @@ button {
 .row {
     display: flex;
     justify-content: center;
+    padding-top: 70px;
 }
 .col {
     margin: 0 20px 20px 20px;
@@ -41,8 +42,65 @@ button {
 }
 .rot {
     position: absolute;
-    top: 25%;
-    right: 47%;
-    height: 80px;
+    top: 24.8%;
+    right: 46.4%;
+    height: 100px;
     display: none;
+}
+.sanek {
+    height: 700px;
+}
+@-webkit-keyframes scroll {
+    0% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    100% {
+        -webkit-transform: translate(-100%, 0);
+        transform: translate(-100%, 0)
+    }
+}
+
+@-moz-keyframes scroll {
+    0% {
+        -moz-transform: translate(0, 0);
+        transform: translate(0, 0);
+    }
+    100% {
+        -moz-transform: translate(-100%, 0);
+        transform: translate(-100%, 0)
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-100%, 0)
+    }
+}
+.marquee {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    -webkit-animation: scroll 5s infinite linear;
+    -moz-animation: scroll 5s infinite linear;
+    animation: scroll 5s infinite linear;
+}
+.header {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 50%;
+}
+.header h1 {
+    font-family: Courier New, monospace;
+    color: white;
 }
