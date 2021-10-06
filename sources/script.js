@@ -17,13 +17,14 @@ function uebat() {
     const fofan = document.querySelector('.fofan');
     hand.style.display = 'block';
     const start = Date.now();
+    play('scream', false, 'mp3');
     const timer = setInterval(() => {
         const timePassed = Date.now() - start;
         if (timePassed >= 2000) {
             clearInterval(timer);
             hand.style.display = 'none';
             fofan.style.display = 'block';
-            play('scream', false, 'mp3')
+            play('plach', false, 'mp3');
             setTimeout(() => fofan.style.display = 'none', 3000)
             return;
         }
