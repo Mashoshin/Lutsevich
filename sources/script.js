@@ -23,6 +23,7 @@ function uebat() {
             clearInterval(timer);
             hand.style.display = 'none';
             fofan.style.display = 'block';
+            play('scream', false, 'mp3')
             setTimeout(() => fofan.style.display = 'none', 3000)
             return;
         }
@@ -35,9 +36,9 @@ function renderText(text) {
     input.innerHTML = text;
 }
 
-function play(file, loop = false) {
+function play(file, loop = false, ext = 'ogg') {
     const rot = document.querySelector('.rot');
-    const audio = new Audio(`/sources/audio/${file}.ogg`);
+    const audio = new Audio(`/sources/audio/${file}.${ext}`);
     audio.loop = loop;
     audio.onended = () => rot.style.display = "none"
     audio.play();
