@@ -16,9 +16,12 @@ function renderText(text) {
 }
 
 function play(file, loop = false) {
+    const rot = document.querySelector('.rot');
     const audio = new Audio(`/sources/audio/${file}.ogg`);
     audio.loop = loop;
+    audio.onended = () => rot.style.display = "none"
     audio.play();
+    rot.style.display = "block"
 }
 
 /**
