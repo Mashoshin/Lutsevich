@@ -24,7 +24,8 @@ function uebat() {
             clearInterval(timer);
             hand.style.display = 'none';
             fofan.style.display = 'block';
-            play('plach', false, 'mp3');
+            play('udar', false, 'wav');
+            setTimeout(() => play('plach', false, 'mp3'), 1000)
             setTimeout(() => fofan.style.display = 'none', 3000)
             return;
         }
