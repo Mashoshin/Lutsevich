@@ -118,3 +118,17 @@ button {
     font-family: Courier New, monospace;
     color: white;
 }
+
+.hui {
+    position: absolute;
+    height: 250px;
+    bottom: 0;
+    right: 0;
+}
+
+.sperma {
+    position: absolute;
+    height: 250px;
+    bottom: 40%;
+    right: 45%;
+}
