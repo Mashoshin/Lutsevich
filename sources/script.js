@@ -3,14 +3,27 @@ window.addEventListener('load', () => {
             fingerBtn = document.querySelector('.finger'),
             gayBtn = document.querySelector('.gay'),
             ebloBtn = document.querySelector('.eblo'),
+            buhBtn = document.querySelector('.buhat'),
             pisunBtn = document.querySelector('.pisun');
 
     sanekImg.addEventListener('click', () => play('tupa_kal', true));
     fingerBtn.addEventListener('click', () => ajax('finger', renderText, () => play('ne_navizu_raz')))
     gayBtn.addEventListener('click', () => ajax('gay', renderText, () => play('tobi_pizda')))
     ebloBtn.addEventListener('click', () => uebat())
+    buhBtn.addEventListener('click', () => nabuhat())
     pisunBtn.addEventListener('click', () => ajax('hui', renderText, () => play('but_v_otgule')))
 });
+
+function nabuhat() {
+    const sanek = document.querySelector('.sanek');
+    const buhaet = document.querySelector('.buhaet');
+    sanek.hidden = true;
+    buhaet.hidden = false;
+    play('glotok', false, 'mp3', false, () => {
+        buhaet.hidden = true;
+        sanek.hidden = false;
+    });
+}
 
 function uebat() {
     const hand = document.querySelector('.hand');
@@ -38,13 +51,16 @@ function renderText(text) {
     input.innerHTML = text;
 }
 
-function play(file, loop = false, ext = 'ogg') {
+function play(file, loop = false, ext = 'ogg', showRot = true, callback = () => {}) {
     const rot = document.querySelector('.rot');
     const audio = new Audio(`/sources/audio/${file}.${ext}`);
     audio.loop = loop;
-    audio.onended = () => rot.style.display = "none"
+    audio.onended = () => {
+        rot.style.display = "none"
+        callback();
+    }
     audio.play();
-    rot.style.display = "block"
+    showRot ? rot.style.display = "block" : true;
 }
 
 /**
