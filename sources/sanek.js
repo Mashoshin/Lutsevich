@@ -2,10 +2,12 @@ class Sanek {
     /**
      * @param {Player} player
      * @param {Game} game
+     * @param {Talker} talker
      */
-    constructor(player, game) {
+    constructor(player, game, talker) {
         this.player = player;
         this.game = game;
+        this.talker = talker;
 
         this.sanekImg = document.querySelector('.sanek');
         this.buhaetImg = document.querySelector('.buhaet');
@@ -19,8 +21,6 @@ class Sanek {
         this.gameBtn = document.querySelector('.game');
         this.pisunBtn = document.querySelector('.pisun');
 
-        this.textInput = document.querySelector('.say');
-
         this.init();
     }
 
@@ -33,32 +33,10 @@ class Sanek {
         this.onClickGameBtn();
     }
 
-    onClickRenderTextButtons() {
-        this.fingerBtn.addEventListener(
-            'click',
-            () => this.sendAjax('finger', this.renderText, () => this.player.play('ne_navizu_raz'))
-        );
-        this.gayBtn.addEventListener(
-            'click',
-            () => this.sendAjax('gay', this.renderText, () => this.player.play('tobi_pizda'))
-        );
-        this.pisunBtn.addEventListener(
-            'click',
-            () => this.sendAjax('hui', this.renderText, () => this.player.play('but_v_otgule'))
-        );
-        this.sanekImg.addEventListener(
-            'click',
-            () => {
-                this.renderText('tupa kal', this);
-                this.player.play('tupa_kal');
-            }
-        );
-    }
-
     onClickEbloBtn() {
-        this.ebloBtn.addEventListener('click', () => {
+        this.ebloBtn.addEventListener('click', () => this.btnEventHandler(() => {
             this.handImg.style.display = 'block';
-            this.player.play('scream', false, 'mp3');
+            this.player.play(new AudioFile('scream', 'mp3'));
             const start = Date.now();
             const timer = setInterval(() => {
                 const timePassed = Date.now() - start;
@@ -66,25 +44,25 @@ class Sanek {
                     clearInterval(timer);
                     this.handImg.style.display = 'none';
                     this.fofanImg.style.display = 'block';
-                    this.player.play('udar', false, 'wav');
-                    setTimeout(() => this.player.play('plach', false, 'mp3'), 1000)
+                    this.player.play(new AudioFile('udar', 'wav'));
+                    setTimeout(() => this.player.play(new AudioFile('plach', 'mp3')), 1000)
                     setTimeout(() => this.fofanImg.style.display = 'none', 3000)
                     return;
                 }
-                this.handImg.style.right = timePassed / 3 + 'px';
+                this.handImg.style.right = timePassed / 50 + '%';
             }, 20);
-        });
+        }));
     }
 
     onClickBuhBtn() {
-        this.buhBtn.addEventListener('click', () => {
+        this.buhBtn.addEventListener('click', () => this.btnEventHandler(() => {
             this.sanekImg.hidden = true;
             this.buhaetImg.hidden = false;
-            this.player.play('glotok', false, 'mp3', false, () => {
+            this.player.play(new AudioFile('glotok', 'mp3'), false, () => {
                 this.buhaetImg.hidden = true;
                 this.sanekImg.hidden = false;
             });
-        });
+        }));
     }
 
     onClickGameBtn() {
@@ -92,18 +70,60 @@ class Sanek {
             this.sanekImg.hidden = true;
             this.buhaetImg.hidden = false;
             this.buhaetImg.style.height = '80%';
+            this.disableBtns();
             this.game.start();
         });
     }
 
-    renderText(text, _that) {
-        _that.textInput.innerHTML = text;
+    onClickRenderTextButtons() {
+        this.fingerBtn.addEventListener(
+            'click',
+            () => this.btnEventHandler(() => this.sendAjax(
+                'finger',
+                data => this.talker.talk(data, new AudioFile('ne_navizu_raz')
+                )
+            ))
+        );
+        this.gayBtn.addEventListener(
+            'click',
+            () => this.btnEventHandler(() => this.sendAjax(
+                'gay',
+                data => this.talker.talk(data, new AudioFile('tobi_pizda')
+                ))
+            )
+        );
+        this.pisunBtn.addEventListener(
+            'click',
+            () => this.btnEventHandler(() => this.sendAjax(
+                'hui',
+                data => this.talker.talk(data, new AudioFile('but_v_otgule')
+                )
+            ))
+        );
+        this.sanekImg.addEventListener(
+            'click',
+            () => this.btnEventHandler(() => this.talker.talk(
+                'tupa kal',
+                new AudioFile('tupa_kal')
+            ))
+        );
     }
 
-    sendAjax(action, callback, playAudio) {
+    btnEventHandler(handler) {
+        this.disableBtns();
+        handler();
+        setTimeout(() => this.disableBtns(false), 1000);
+    }
+
+    disableBtns(disabled = true) {
+        document.querySelectorAll('button').forEach(btn => {
+            btn.style.pointerEvents = disabled ? 'none' : 'auto';
+        });
+    }
+
+    sendAjax(action, callback) {
         fetch(`/api/${action}`)
             .then(r => r.json())
-            .then(data => callback(data.data, this))
-            .then(() => playAudio())
+            .then(data => callback(data.data));
     }
 }

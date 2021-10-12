@@ -1,7 +1,7 @@
 window.addEventListener('load', () => {
     const player = new Player();
     const game = new Game(player);
-
-    new Sanek(player, game);
+    const talker = new Talker(player);
+    new Sanek(player, game, talker);
 });
 

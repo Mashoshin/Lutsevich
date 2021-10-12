@@ -17,7 +17,7 @@ class Game {
 
     start() {
         this.textInput.innerHTML = '0 score';
-        this.player.play('mario', true, 'mp3', false)
+        this.player.play(new AudioFile('mario', 'mp3'), true)
         setTimeout(() => {
             this.started = true;
             this.huiImg.hidden = false;
