@@ -13,6 +13,7 @@ class Sanek {
         this.buhaetImg = document.querySelector('.buhaet');
         this.handImg = document.querySelector('.hand');
         this.fofanImg = document.querySelector('.fofan');
+        this.dancerImg = document.querySelector('.dancer');
 
         this.fingerBtn = document.querySelector('.finger');
         this.gayBtn = document.querySelector('.gay');
@@ -20,6 +21,7 @@ class Sanek {
         this.buhBtn = document.querySelector('.buhat');
         this.gameBtn = document.querySelector('.game');
         this.pisunBtn = document.querySelector('.pisun');
+        this.danceBtn = document.querySelector('.dance');
 
         this.init();
     }
@@ -31,6 +33,24 @@ class Sanek {
         this.onClickBuhBtn();
         this.onClickEbloBtn();
         this.onClickGameBtn();
+        this.onClickDanceBtn();
+    }
+
+    onClickDanceBtn() {
+        this.danceBtn.addEventListener('click', () => this.btnEventHandler(() => {
+            this.sanekImg.hidden = true;
+            this.dancerImg.hidden = false;
+            let left = -1;
+            const interval = setInterval(() => {
+                this.dancerImg.style.transform = `scale(${left}, 1)`;
+                left = left === 1 ? -1 : 1;
+            }, 1000);
+            this.player.play(new AudioFile('gubin_noch', 'mp3'), false, () => {
+                this.sanekImg.hidden = false;
+                this.dancerImg.hidden = true;
+                clearInterval(interval);
+            });
+        }));
     }
 
     onClickEbloBtn() {
