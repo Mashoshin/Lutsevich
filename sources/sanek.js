@@ -23,7 +23,7 @@ class Sanek {
         this.pisunBtn = document.querySelector('.pisun');
         this.danceBtn = document.querySelector('.dance');
 
-        this.runningString = document.querySelector('.marquee span');
+        this.runningString = document.querySelector('.marquee');
 
         this.init();
     }
@@ -43,8 +43,8 @@ class Sanek {
             this.sanekImg.hidden = true;
             this.dancerImg.hidden = false;
             let left = -1;
-            this.runningString.innerHTML = `${this.song()}`;
-            this.runningString.style.animation = 'scroll 36s infinite linear';
+            this.runningString.innerHTML = `<span>${this.song()}</span>`;
+            this.runningString.querySelector('span').style.animation = 'scroll 36s infinite linear';
             const interval = setInterval(() => {
                 this.dancerImg.style.transform = `scale(${left}, 1)`;
                 left = left === 1 ? -1 : 1;
@@ -53,7 +53,7 @@ class Sanek {
                 this.sanekImg.hidden = false;
                 this.dancerImg.hidden = true;
                 this.runningString.innerHTML = `<span>Поиграй с Саньком</span>`;
-                this.runningString.style.animation = 'scroll 5s infinite linear';
+                this.runningString.querySelector('span').style.animation = 'scroll 5s infinite linear';
                 clearInterval(interval);
             });
         }));
