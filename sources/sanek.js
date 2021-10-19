@@ -23,6 +23,8 @@ class Sanek {
         this.pisunBtn = document.querySelector('.pisun');
         this.danceBtn = document.querySelector('.dance');
 
+        this.runningString = document.querySelector('.marquee span');
+
         this.init();
     }
 
@@ -41,13 +43,17 @@ class Sanek {
             this.sanekImg.hidden = true;
             this.dancerImg.hidden = false;
             let left = -1;
+            this.runningString.innerHTML = `${this.song()}`;
+            this.runningString.style.animation = 'scroll 36s infinite linear';
             const interval = setInterval(() => {
                 this.dancerImg.style.transform = `scale(${left}, 1)`;
                 left = left === 1 ? -1 : 1;
-            }, 1000);
+            }, 500);
             this.player.play(new AudioFile('gubin_noch', 'mp3'), false, () => {
                 this.sanekImg.hidden = false;
                 this.dancerImg.hidden = true;
+                this.runningString.innerHTML = `<span>Поиграй с Саньком</span>`;
+                this.runningString.style.animation = 'scroll 5s infinite linear';
                 clearInterval(interval);
             });
         }));
@@ -145,5 +151,16 @@ class Sanek {
         fetch(`/api/${action}`)
             .then(r => r.json())
             .then(data => callback(data.data));
+    }
+
+    song() {
+        return 'Ночь, ожиданья холод, боль, словно я расколот ' +
+            'Я ничего не вижу, сам себя я ненавижу ' +
+            'Вновь слёзы ниоткуда, в кровь я кусаю губы ' +
+            'Всё, что мне сегодня надо — просто быть с тобою рядом ' +
+            'Ночь, что за странная свобода: от заката до восхода ' +
+            'Ждать тебя, надеясь вновь, о-о-о ' +
+            'День, я прошу тебя — не надо от восхода до заката ' +
+            'Говорить мне про любовь, о-о-о';
     }
 }
