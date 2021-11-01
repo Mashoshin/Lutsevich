@@ -14,6 +14,7 @@ class Sanek {
         this.handImg = document.querySelector('.hand');
         this.fofanImg = document.querySelector('.fofan');
         this.dancerImg = document.querySelector('.dancer');
+        this.tsvetImg = document.querySelector('.tsvet');
 
         this.fingerBtn = document.querySelector('.finger');
         this.gayBtn = document.querySelector('.gay');
@@ -22,6 +23,7 @@ class Sanek {
         this.gameBtn = document.querySelector('.game');
         this.pisunBtn = document.querySelector('.pisun');
         this.danceBtn = document.querySelector('.dance');
+        this.doebBtn = document.querySelector('.doeb');
 
         this.runningString = document.querySelector('.marquee');
 
@@ -36,6 +38,14 @@ class Sanek {
         this.onClickEbloBtn();
         this.onClickGameBtn();
         this.onClickDanceBtn();
+        this.onClickDoebBtn();
+    }
+
+    onClickDoebBtn() {
+        this.doebBtn.addEventListener('click', () => this.btnEventHandler(() => {
+            this.tsvetImg.hidden = false;
+            this.player.play(new AudioFile('tsvet', 'wav'), false, () => this.tsvetImg.hidden = true)
+        }));
     }
 
     onClickDanceBtn() {

@@ -132,3 +132,8 @@ button {
     bottom: 40%;
     right: 45%;
 }
+
+.tsvet {
+    position: absolute;
+    right: 10%;
+}
