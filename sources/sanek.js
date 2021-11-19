@@ -15,6 +15,8 @@ class Sanek {
         this.fofanImg = document.querySelector('.fofan');
         this.dancerImg = document.querySelector('.dancer');
         this.tsvetImg = document.querySelector('.tsvet');
+        this.eaterImg = document.querySelector('.eater');
+        this.pizzaImg = document.querySelector('.pizza');
 
         this.fingerBtn = document.querySelector('.finger');
         this.gayBtn = document.querySelector('.gay');
@@ -24,6 +26,7 @@ class Sanek {
         this.pisunBtn = document.querySelector('.pisun');
         this.danceBtn = document.querySelector('.dance');
         this.doebBtn = document.querySelector('.doeb');
+        this.eatBtn = document.querySelector('.eat');
 
         this.runningString = document.querySelector('.marquee');
 
@@ -39,6 +42,36 @@ class Sanek {
         this.onClickGameBtn();
         this.onClickDanceBtn();
         this.onClickDoebBtn();
+        this.onClickEatBtn();
+    }
+
+    onClickEatBtn() {
+        this.eatBtn.addEventListener('click', () => this.btnEventHandler(() => {
+            this.talker.talk('Ooouu<br>maaa', null, false);
+            this.sanekImg.hidden = true;
+            this.eaterImg.hidden = false;
+            this.pizzaImg.hidden = false;
+            let start = Date.now();
+            let count = 0;
+            const timer = setInterval(() => {
+                if (count === 3) {
+                    clearInterval(timer);
+                    this.pizzaImg.hidden = true;
+                    this.eaterImg.hidden = true;
+                    this.sanekImg.hidden = false;
+                    this.talker.talk('Yeee', null, false);
+                    return;
+                }
+                const timePassed = Date.now() - start;
+                if (timePassed >= 2800) {
+                    start = Date.now();
+                    count++;
+                    this.player.play(new AudioFile('eat', 'mp3'), false)
+                    this.pizzaImg.style.left = '0px';
+                }
+                this.pizzaImg.style.left = timePassed / 50 + '%';
+            }, 10);
+        }));
     }
 
     onClickDoebBtn() {

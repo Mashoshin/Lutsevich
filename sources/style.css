@@ -54,6 +54,9 @@ button {
     margin: 0 20px 20px 20px;
     display: table-cell;
 }
+.pt-10 {
+    padding-top: 10px;
+}
 .rot {
     position: absolute;
     top: 24.8%;
@@ -136,4 +139,16 @@ button {
 .tsvet {
     position: absolute;
     right: 10%;
+}
+
+.pizza {
+    position: absolute;
+    left: 0;
+    top: 250px;
+    max-height: 200px;
+}
+
+.eater {
+    position: absolute;
+    right: 0;
 }

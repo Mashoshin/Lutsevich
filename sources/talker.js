@@ -11,11 +11,14 @@ class Talker {
     /**
      * @param {string} text
      * @param {AudioFile} audio
+     * @param {boolean} showRot
      */
-    talk(text, audio) {
+    talk(text, audio, showRot = true) {
         this.input.innerHTML = text;
-        this.showRot(true);
-        this.player.play(audio, false, () => this.showRot(false));
+        this.showRot(showRot);
+        if (audio) {
+            this.player.play(audio, false, () => this.showRot(false));
+        }
     }
 
     showRot(show = true) {
