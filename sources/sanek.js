@@ -17,6 +17,7 @@ class Sanek {
         this.tsvetImg = document.querySelector('.tsvet');
         this.eaterImg = document.querySelector('.eater');
         this.pizzaImg = document.querySelector('.pizza');
+        this.cleanerImg = document.querySelector('.cleaner');
 
         this.fingerBtn = document.querySelector('.finger');
         this.gayBtn = document.querySelector('.gay');
@@ -27,6 +28,7 @@ class Sanek {
         this.danceBtn = document.querySelector('.dance');
         this.doebBtn = document.querySelector('.doeb');
         this.eatBtn = document.querySelector('.eat');
+        this.cleanBtn = document.querySelector('.clean');
 
         this.runningString = document.querySelector('.marquee');
 
@@ -43,6 +45,18 @@ class Sanek {
         this.onClickDanceBtn();
         this.onClickDoebBtn();
         this.onClickEatBtn();
+        this.onClickCleanBtn();
+    }
+
+    onClickCleanBtn() {
+        this.cleanBtn.addEventListener('click', () => this.btnEventHandler(() => {
+            this.sanekImg.hidden = true;
+            this.cleanerImg.hidden = false;
+            this.player.play(new AudioFile('cleaner'), false, () => {
+                this.sanekImg.hidden = false;
+                this.cleanerImg.hidden = true;
+            })
+        }));
     }
 
     onClickEatBtn() {

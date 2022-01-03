@@ -64,7 +64,7 @@ button {
     height: 100px;
     display: none;
 }
-.sanek {
+.sanek, .cleaner {
     height: 700px;
 }
 @-webkit-keyframes scroll {
