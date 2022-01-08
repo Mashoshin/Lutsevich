@@ -52,9 +52,17 @@ class Sanek {
         this.cleanBtn.addEventListener('click', () => this.btnEventHandler(() => {
             this.sanekImg.hidden = true;
             this.cleanerImg.hidden = false;
-            this.player.play(new AudioFile('cleaner'), false, () => {
-                this.sanekImg.hidden = false;
-                this.cleanerImg.hidden = true;
+            let left = -1;
+            const interval = setInterval(() => {
+                this.cleanerImg.style.transform = `scale(${left}, 1)`;
+                left = left === 1 ? -1 : 1;
+            }, 500);
+            this.player.play(new AudioFile('proper', 'mp3'), false, () => {
+                this.player.play(new AudioFile('cleaner'), false, () => {
+                    this.sanekImg.hidden = false;
+                    this.cleanerImg.hidden = true;
+                    clearInterval(interval);
+                })
             })
         }));
     }
