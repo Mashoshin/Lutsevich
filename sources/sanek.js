@@ -18,6 +18,7 @@ class Sanek {
         this.eaterImg = document.querySelector('.eater');
         this.pizzaImg = document.querySelector('.pizza');
         this.cleanerImg = document.querySelector('.cleaner');
+        this.hoholImg = document.querySelector('.hoholImg');
 
         this.fingerBtn = document.querySelector('.finger');
         this.gayBtn = document.querySelector('.gay');
@@ -29,6 +30,7 @@ class Sanek {
         this.doebBtn = document.querySelector('.doeb');
         this.eatBtn = document.querySelector('.eat');
         this.cleanBtn = document.querySelector('.clean');
+        this.hoholBtn = document.querySelector('.hohol');
 
         this.runningString = document.querySelector('.marquee');
 
@@ -46,6 +48,7 @@ class Sanek {
         this.onClickDoebBtn();
         this.onClickEatBtn();
         this.onClickCleanBtn();
+        this.onClickHoholBtn();
     }
 
     onClickCleanBtn() {
@@ -64,6 +67,18 @@ class Sanek {
                     clearInterval(interval);
                 })
             })
+        }));
+    }
+
+    onClickHoholBtn() {
+        this.hoholBtn.addEventListener('click', () => this.btnEventHandler(() => {
+            this.sanekImg.hidden = true;
+            this.hoholImg.hidden = false;
+            this.talker.talk('Я<br>Русский', null, false);
+            this.player.play(new AudioFile('hohol', 'mp3'), false, () => {
+                this.hoholImg.hidden = true;
+                this.sanekImg.hidden = false;
+            });
         }));
     }
 

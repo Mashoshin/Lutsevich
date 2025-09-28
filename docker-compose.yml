@@ -2,7 +2,7 @@ version: '3.0'
 
 services:
   php-fpm:
-    build: .dockerfiles/php
+    image: php:8.2-fpm
     restart: always
     container_name: php-sanya
     volumes:
